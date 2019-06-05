@@ -18,7 +18,7 @@ public class Router {
   private static List<List<String>> routerTable;
   // 路由节点名称对应表
   private static Map<String, Integer> routerNodeMap = Map.of("A", 0, "B", 1, "C", 2, "D", 3, "E", 4);
-
+  // 节点的收敛状态：Converging / Steady
   private static String iterationStatus = "Converging";
 
   /**
@@ -52,8 +52,8 @@ public class Router {
 
     String[] routerName = { "A", "B", "C", "D", "E" };
 
-    System.out.println("------ Router Table -----------");
-    System.out.println(String.format("|    | %-2s | %-2s | %-2s | %-2s | %-2s |", "A", "B", "C", "D", "E"));
+    System.out.println("-------- Router Table ---------");
+    System.out.println("|    | A  | B  | C  | D  | E  |");
     for (int i = 0; i < routerTableRow; i++) {
       System.out.print(String.format("| %-2s |", routerName[i]));
       for (int j = 0; j < routerTableCol; j++) {
@@ -61,15 +61,39 @@ public class Router {
       }
       System.out.println();
     }
-    System.out.println("------ Router Table -----------");
+    System.out.println("-------- Router Table ---------");
   }
 
-  public static List<String> printNodeInfo(String node) {
+  public static List<String> getNodeDistances(String node) {
     return routerTable.get(routerNodeMap.get(node));
   }
 
-  public static void refreshNodes() {
+  public static void updateNode(int source) {
+    int routerTableRow = routerTable.size();
+    int routerTableCol = routerTable.get(0).size();
 
+    for (int i = 0; i < routerTableCol; i++) {
+      if (!routerTable.get(source).get(i).equals("-")) {
+        int dist = Integer.parseInt(routerTable.get(source).get(i));
+        // *TO-DO: Update nodes
+      }
+    }
+  }
+
+  public static void refreshNodes() {
+    List<List<String>> originalRouterTable = routerTable;
+    int routerTableRow = routerTable.size();
+    int routerTableCol = routerTable.get(0).size();
+
+    for (int i = 0; i < routerTableRow; i++) {
+      for (int j = 0; j < routerTableCol; j++) {
+        // !TO-DO: Update node distances
+      }
+    }
+
+    if (originalRouterTable.equals(routerTable)) {
+      iterationStatus = "Steady";
+    }
   }
 
   public static void main(String[] args) throws FileNotFoundException, IOException {
@@ -98,7 +122,7 @@ public class Router {
       }
 
       if ("ABCDEabcde".contains(input)) {
-        List<String> nodeInfo = printNodeInfo(input.toUpperCase());
+        List<String> nodeInfo = getNodeDistances(input.toUpperCase());
         System.out.println(nodeInfo);
       } else if (input.equals("ALL") || input.equals("all")) {
         printRouterTable(routerTable);
