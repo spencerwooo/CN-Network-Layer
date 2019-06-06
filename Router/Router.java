@@ -23,7 +23,6 @@ public class Router {
 
   /**
    * Read router table
-   *
    * @param file 路由表文件
    * @return List<List<String>> 路由表数据结构（二维列表）
    */
@@ -43,7 +42,6 @@ public class Router {
 
   /**
    * 打印路由表
-   *
    * @param routerTable
    */
   public static void printRouterTable(List<List<String>> routerTable) {
@@ -68,27 +66,57 @@ public class Router {
     return routerTable.get(routerNodeMap.get(node));
   }
 
+  /**
+   * 更新路由表某一节点的最短路径信息
+   * @param source
+   */
   public static void updateNode(int source) {
-    int routerTableRow = routerTable.size();
     int routerTableCol = routerTable.get(0).size();
+    // 当前节点所存储的数据表
+    List<String> sourceNodeInfo = routerTable.get(source);
 
     for (int i = 0; i < routerTableCol; i++) {
-      if (!routerTable.get(source).get(i).equals("-")) {
-        int dist = Integer.parseInt(routerTable.get(source).get(i));
-        // *TO-DO: Update nodes
+      if (i != source) {
+        if (!sourceNodeInfo.get(i).equals("-")) {
+          if (!sourceNodeInfo.get(i).equals("0")) {
+            int toAdjNodeDist = Integer.parseInt(sourceNodeInfo.get(i));
+
+            // 邻居节点发来的数据表
+            List<String> adjacentNodeInfo = routerTable.get(i);
+            for (int j = 0; j < adjacentNodeInfo.size(); j++) {
+              if (!adjacentNodeInfo.get(j).equals("-")) {
+                if (!adjacentNodeInfo.get(j).equals("0")) {
+                  if (j != source) {
+                    int nodeToNextHopDist = Integer.parseInt(adjacentNodeInfo.get(j));
+                    int newDist = nodeToNextHopDist + toAdjNodeDist;
+
+                    if (sourceNodeInfo.get(j).equals("-")) {
+                      routerTable.get(source).set(j, Integer.toString(newDist));
+                    } else {
+                      if (newDist < Integer.parseInt(sourceNodeInfo.get(j))) {
+                        routerTable.get(source).set(j, Integer.toString(newDist));
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 
+  /**
+   * 更新整个路由表
+   * Refresh whole routing table
+   */
   public static void refreshNodes() {
     List<List<String>> originalRouterTable = routerTable;
     int routerTableRow = routerTable.size();
-    int routerTableCol = routerTable.get(0).size();
 
     for (int i = 0; i < routerTableRow; i++) {
-      for (int j = 0; j < routerTableCol; j++) {
-        // !TO-DO: Update node distances
-      }
+      updateNode(i);
     }
 
     if (originalRouterTable.equals(routerTable)) {
