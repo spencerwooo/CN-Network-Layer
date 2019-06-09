@@ -11,8 +11,6 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 
 public class UDPSender extends Thread {
-  // 当前节点端口
-  private int currentPort;
   // 下一跳的端口
   private int nextHopPort;
   // 分组待发送包内容
@@ -22,15 +20,14 @@ public class UDPSender extends Thread {
   private InetAddress address;
   private byte[] buf;
 
-  public UDPSender(int currentPort, int nextHopPort, RouterPacket routerPacket)
+  public UDPSender(int nextHopPort, RouterPacket routerPacket)
       throws UnknownHostException, SocketException {
     // 当前端口和下一跳端口
-    this.currentPort = currentPort;
     this.nextHopPort = nextHopPort;
     // 发送包
     this.routerPacket = routerPacket;
 
-    this.socket = new DatagramSocket(this.currentPort);
+    this.socket = new DatagramSocket();
     this.address = InetAddress.getByName("localhost");
   }
 

@@ -23,11 +23,11 @@ public class Test {
      * !Run UDP Sender thread: UDPSender.run()
      */
     RouterPacket packet1 = new RouterPacket(64342, 50001, 30, "Hello 1");
-    UDPSender udpSender1 = new UDPSender(54321, 50001, packet1);
+    UDPSender udpSender1 = new UDPSender(50001, packet1);
     udpSender1.run();
 
     RouterPacket packet2 = new RouterPacket(64310, 50001, 30, "Hello 2");
-    UDPSender udpSender2 = new UDPSender(54321, 50001, packet2);
+    UDPSender udpSender2 = new UDPSender(50001, packet2);
     udpSender2.run();
   }
 }
