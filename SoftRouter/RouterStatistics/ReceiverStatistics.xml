@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<statistics>
+  <node id="0">
+    <receive>
+    </receive>
+    <lost>
+    </lost>
+  </node>
+  <node id="1">
+    <receive>
+    </receive>
+    <lost>
+    </lost>
+  </node>
+  <node id="2">
+    <receive>
+    </receive>
+    <lost>
+    </lost>
+  </node>
+  <node id="3">
+    <receive>
+    </receive>
+    <lost>
+    </lost>
+  </node>
+  <node id="4">
+    <receive>
+    </receive>
+    <lost>
+    </lost>
+  </node>
+</statistics>
