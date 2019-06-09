@@ -56,7 +56,7 @@ public class RouterPacket implements Serializable {
 
   @Override
   public String toString() {
-    return "{" + "sourcePort='" + getSourcePort() + "'" + ", targetPort='" + getTargetPort() + "'" + ", timeToLive='"
-        + getTimeToLive() + "'" + ", data='" + getData() + "'" + "}";
+    return "sourcePort='" + getSourcePort() + "'" + ", targetPort='" + getTargetPort() + "'" + ", timeToLive='"
+        + getTimeToLive() + "'" + ", data='" + getData() + "'";
   }
 }

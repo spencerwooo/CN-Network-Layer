@@ -14,7 +14,7 @@ public class Test {
      * ?Why .start() not .run()? See:
      *  https://www.geeksforgeeks.org/difference-between-thread-start-and-thread-run-in-java/
      */
-    UDPReceiver udpReceiver = new UDPReceiver(50001);
+    UDPReceiver udpReceiver = new UDPReceiver(0, 50001);
     udpReceiver.start();
 
     /**
@@ -22,12 +22,16 @@ public class Test {
      * *UDPSender initialize: (int currentPort, int nextNodePort, RouterPacket packet)
      * !Run UDP Sender thread: UDPSender.run()
      */
-    RouterPacket packet1 = new RouterPacket(64342, 50001, 30, "Hello 1");
-    UDPSender udpSender1 = new UDPSender(50001, packet1);
+    RouterPacket packet1 = new RouterPacket(64342, 50001, 1, "Hello 1");
+    UDPSender udpSender1 = new UDPSender(0, 50001, packet1);
     udpSender1.run();
 
-    RouterPacket packet2 = new RouterPacket(64310, 50001, 30, "Hello 2");
-    UDPSender udpSender2 = new UDPSender(50001, packet2);
+    RouterPacket packet2 = new RouterPacket(64310, 50001, 2, "Hello 2");
+    UDPSender udpSender2 = new UDPSender(1, 50001, packet2);
     udpSender2.run();
+
+    RouterPacket packet3 = new RouterPacket(64310, 50001, 3, "end");
+    UDPSender udpSender3 = new UDPSender(4, 50001, packet3);
+    udpSender3.run();
   }
 }
