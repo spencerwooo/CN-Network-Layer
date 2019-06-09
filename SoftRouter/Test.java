@@ -1,11 +1,14 @@
 package SoftRouter;
 
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.xml.sax.SAXException;
 
 public class Test {
 
-  public static void main(String[] args) throws UnknownHostException, SocketException {
+  public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
     System.out.println("[INFO] Starting UDP send and receive procedure");
 
     /**
@@ -33,5 +36,8 @@ public class Test {
     RouterPacket packet3 = new RouterPacket(64310, 50001, 3, "end");
     UDPSender udpSender3 = new UDPSender(4, 50001, packet3);
     udpSender3.run();
+
+    Statistics statistics = new Statistics();
+    statistics.printStats();
   }
 }

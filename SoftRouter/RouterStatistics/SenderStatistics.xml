@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<statistics>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><statistics>
   <node id="0">
     <send>
-    </send>
+    <packet>sourcePort='64342', targetPort='50001', timeToLive='1', data='Hello 1'</packet></send>
   </node>
   <node id="1">
     <send>
-    </send>
+    <packet>sourcePort='64310', targetPort='50001', timeToLive='2', data='Hello 2'</packet></send>
   </node>
   <node id="2">
     <send>
@@ -18,6 +17,6 @@
   </node>
   <node id="4">
     <send>
-    </send>
+    <packet>sourcePort='64310', targetPort='50001', timeToLive='3', data='end'</packet></send>
   </node>
 </statistics>

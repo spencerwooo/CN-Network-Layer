@@ -1,8 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<statistics>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><statistics>
   <node id="0">
     <receive>
-    </receive>
+    <packet>sourcePort='64342', targetPort='50001', timeToLive='1', data='Hello 1'</packet><packet>sourcePort='64310', targetPort='50001', timeToLive='2', data='Hello 2'</packet><packet>sourcePort='64310', targetPort='50001', timeToLive='3', data='end'</packet></receive>
     <lost>
     </lost>
   </node>
